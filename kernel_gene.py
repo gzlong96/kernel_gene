@@ -166,10 +166,10 @@ class Evolution:
         # print("best assign:" + str(self.group[0].hole_city))
         assigns = open("result/top_assigns_"+self.seq_num+".txt",'w')
         for i in range(5):
-            if isinstance(self.group[i].hole_city, type([])):
-                assigns.write(str(self.group[0].hole_city)+'\n')
+            if isinstance(self.group[i].kernel, type([])):
+                assigns.write(str(self.group[0].kernel) + '\t' + str(self.group[0].rate)+'\n')
             else:
-                assigns.write(str(self.group[0].hole_city.tolist()) + '\n')
+                assigns.write(str(self.group[0].kernel) + '\t' + str(self.group[0].rate) + '\n')
         print(str(self.group[99].reward))
 
         if self.step%1 == 0 or self.step == 1:
@@ -179,8 +179,8 @@ class Evolution:
             print("--------------------------------------------------------")
             # true_reward.write(str(self.group[0].get_reward_from_agent())+'\n')
             # sta_reward.write(str(self.group[0].reward) + '\n')
-            print(self.group[0].hole_city)
-            print(sim_average[str(self.group[0].hole_city)])
+            print(str(self.group[0].kernel) + '\t' + str(self.group[0].rate))
+            print(sim_average[str(self.group[0].scaled_kernel)])
             print(self.group[0].reward)
             self.sim_reward.write(str([self.group[0].get_reward(),sim_count,(time.time()-self.time_stamp)/60]) + '\n')
             self.best_assign.write(str(self.group[0].reward) + '\n')
