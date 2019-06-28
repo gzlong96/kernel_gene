@@ -2,7 +2,7 @@ import numpy as np
 import random
 import config
 
-import tensorflow as tf
+# import tensorflow as tf
 
 # class DDPG(object):
 #     def __init__(self, a_dim, a_bound, memory_length, TAU=0.01, LR_C=1e-4, LR_A=1e-4, batch_size=64):

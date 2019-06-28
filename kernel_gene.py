@@ -5,13 +5,13 @@ import config
 from agent.agent_gym import AGENT_GYM
 from agent.simple_agent import Agent
 import numpy as np
-import keras
-from keras.models import Model
-from keras.layers import Dense, Dropout, Activation, Conv2D, MaxPooling2D, Input, Flatten, Conv2DTranspose, Reshape, Concatenate
-from keras.optimizers import Adam
-from keras.utils import to_categorical
-import keras.backend as K
-import keras.callbacks
+# import keras
+# from keras.models import Model
+# from keras.layers import Dense, Dropout, Activation, Conv2D, MaxPooling2D, Input, Flatten, Conv2DTranspose, Reshape, Concatenate
+# from keras.optimizers import Adam
+# from keras.utils import to_categorical
+# import keras.backend as K
+# import keras.callbacks
 import copy
 import multiprocessing as mp
 
