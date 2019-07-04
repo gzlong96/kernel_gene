@@ -59,13 +59,14 @@ agent = Agent()
 #     pred_hot, pred_r = model.predict([np.reshape(to_categorical(hole_city, 5), (-1, 20, 5))], batch_size=32)
 #     return pred_r[0][0]
 
+KERNEL_SIZE = 7
 
 sim_average = {}
 sim_count = 0
 class OneAssign:
     def __init__(self, kernel=None, rate=None):
         if kernel is None:
-            self.kernel = np.random.rand(25)
+            self.kernel = np.random.rand(KERNEL_SIZE * KERNEL_SIZE)
         else:
             self.kernel = kernel
         if rate is None:
@@ -74,7 +75,7 @@ class OneAssign:
             self.rate = rate
         self.reward = 0
 
-        self.scaled_kernel = np.reshape(self.kernel*self.rate/(1-self.rate), [5,5])
+        self.scaled_kernel = np.reshape(self.kernel*self.rate/(1-self.rate), [KERNEL_SIZE,KERNEL_SIZE])
 
     def get_reward(self):
         self.reward = self.get_reward_from_agent()
@@ -191,7 +192,7 @@ class Evolution:
 
 
     def cross(self, father, mother):
-        cross_pos = random.randint(1, 23)
+        cross_pos = random.randint(1, KERNEL_SIZE * KERNEL_SIZE - 2)
         son = OneAssign(np.concatenate([self.group[father].kernel[:cross_pos], self.group[mother].kernel[cross_pos:]]),
                         (self.group[father].rate + self.group[mother].rate)/2)
         # if str(son.hole_city) not in self.duplicate:
@@ -202,7 +203,7 @@ class Evolution:
         if mutate < self.mutate_rate:
             for i in range(5):
             # for i in range(max([5, 10 * int(0.2 > (self.group[0].reward - self.group[-1].reward))])):
-                mutate_pos = random.randint(0, 24)
+                mutate_pos = random.randint(0, KERNEL_SIZE * KERNEL_SIZE - 1)
                 # son.hole_city[mutate_pos] = np.random.multinomial(1, city_dis, size=1).tolist()[0].index(1)
                 son.kernel[mutate_pos] = (son.kernel[mutate_pos]+np.random.random())/2
             son = OneAssign(son.kernel, son.rate * 0.9 + np.random.random() * 0.1)
