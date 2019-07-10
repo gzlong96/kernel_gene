@@ -59,7 +59,7 @@ agent = Agent()
 #     pred_hot, pred_r = model.predict([np.reshape(to_categorical(hole_city, 5), (-1, 20, 5))], batch_size=32)
 #     return pred_r[0][0]
 
-KERNEL_SIZE = 7
+KERNEL_SIZE = 5
 
 sim_average = {}
 sim_count = 0
@@ -237,3 +237,20 @@ if __name__ == "__main__":
 
     # time2 = time.time()
     # print("total time: " + str((time2-time1)/3600.0))
+
+ #    kernel = [0.89556474, 0.93345944, 0.11429645,0.57428556, 0.01492795, 0.35225175,
+ # 0.57058802, 0.9543333,  0.644454,   0.00462584, 0.17701209, 0.25045089,
+ # 0.58698733, 0.30012128, 0.17118551, 0.96379545, 0.42662785, 0.09717202,
+ # 0.28708523, 0.32015221, 0.71974159, 0.8525301,  0.74983782, 0.60798858,
+ # 0.61496889]
+ #
+ #    # kernel = np.ones((5,5))
+ #
+ #    son = OneAssign(np.array(kernel), 0.5778)
+ #    for i in range(3):
+ #        print(son.get_reward())
+
+    # TODO
+    # all_1  enmu rate
+    # no rate
+    # on best result
