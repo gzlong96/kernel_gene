@@ -206,7 +206,7 @@ class Evolution:
                 mutate_pos = random.randint(0, KERNEL_SIZE * KERNEL_SIZE - 1)
                 # son.hole_city[mutate_pos] = np.random.multinomial(1, city_dis, size=1).tolist()[0].index(1)
                 son.kernel[mutate_pos] = (son.kernel[mutate_pos]+np.random.random())/2
-            son = OneAssign(son.kernel, son.rate * 0.9 + np.random.random() * 0.1)
+            son = OneAssign(son.kernel, son.rate * 0.7 + np.random.random() * 0.3)
         son.get_reward()
         return son
 
@@ -233,22 +233,23 @@ if __name__ == "__main__":
     # pl.close()
     # pl.join()
 
-    one_evo(0)
+    # one_evo(0)
 
     # time2 = time.time()
     # print("total time: " + str((time2-time1)/3600.0))
 
- #    kernel = [0.89556474, 0.93345944, 0.11429645,0.57428556, 0.01492795, 0.35225175,
- # 0.57058802, 0.9543333,  0.644454,   0.00462584, 0.17701209, 0.25045089,
- # 0.58698733, 0.30012128, 0.17118551, 0.96379545, 0.42662785, 0.09717202,
- # 0.28708523, 0.32015221, 0.71974159, 0.8525301,  0.74983782, 0.60798858,
- # 0.61496889]
+    kernel = [0.89556474, 0.93345944, 0.11429645,0.57428556, 0.01492795, 0.35225175,
+ 0.57058802, 0.9543333,  0.644454,   0.00462584, 0.17701209, 0.25045089,
+ 0.58698733, 0.30012128, 0.17118551, 0.96379545, 0.42662785, 0.09717202,
+ 0.28708523, 0.32015221, 0.71974159, 0.8525301,  0.74983782, 0.60798858,
+ 0.61496889]
  #
- #    # kernel = np.ones((5,5))
- #
- #    son = OneAssign(np.array(kernel), 0.5778)
- #    for i in range(3):
- #        print(son.get_reward())
+    # kernel = np.ones((5,5))
+
+    for i in range(10):
+        son = OneAssign(np.array(kernel), 0.50+float(i)/50)
+        print("Rate: " + str(0.50+float(i)/50))
+        print((son.get_reward()+son.get_reward()+son.get_reward())/3)
 
     # TODO
     # all_1  enmu rate
